@@ -1,5 +1,7 @@
 @extends('layouts.web.web')
-
+@section('title')
+<title><?php echo $data['name']; ?> - {{ store_data()['name'] }} </title>
+@endsection
 @section('content')
 
 

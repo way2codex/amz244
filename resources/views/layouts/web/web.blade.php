@@ -12,7 +12,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Home') }}</title>
+    @yield('title')
 
     <!--Favicon-->
     <link rel="icon" href="{{ asset('web_asset/images/favicon.png') }}" type="image/x-icon">

@@ -1,5 +1,8 @@
 @extends('layouts.web.web')
 
+@section('title')
+<title>{{ store_data()['name'] }}</title>
+@endsection
 @section('content')
 
 <!-- Page Title Start -->
@@ -53,7 +56,7 @@
                     <?php } ?>
                 </div>
 
-                <div class="paging">
+                <!-- <div class="paging">
                     <ul class="pagination">
                         <li class="active"><a href="#">1</a></li>
                         <li><a href="#">2</a></li>
@@ -61,7 +64,7 @@
                         <li><a href="#">4</a></li>
                         <li><a href="#">»</a></li>
                     </ul>
-                </div>
+                </div> -->
                 {!! $data->links() !!}
             </div>
 

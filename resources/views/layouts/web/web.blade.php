@@ -40,17 +40,9 @@
             <div class="animation-preloader">
                 <div class="spinner"></div>
                 <div class="txt-loading">
-                    <span data-text-preloader="A" class="letters-loading">A</span>
-                    <span data-text-preloader="L" class="letters-loading">L</span>
-                    <span data-text-preloader="T" class="letters-loading">T</span>
-                    <span data-text-preloader="R" class="letters-loading">R</span>
-                    <span data-text-preloader="O" class="letters-loading">O</span>
-                    <span data-text-preloader="Z" class="letters-loading">Z</span>
+
                     <span data-text-preloader="&nbsp;" class="letters-loading">&nbsp;</span>
-                    <span data-text-preloader="N" class="letters-loading">N</span>
-                    <span data-text-preloader="E" class="letters-loading">E</span>
-                    <span data-text-preloader="W" class="letters-loading">W</span>
-                    <span data-text-preloader="S" class="letters-loading">S</span>
+
                 </div>
             </div>
             <div class="loader">
@@ -147,11 +139,11 @@
                                     <?php foreach (all_category() as $key => $all_category_item) { ?>
                                         <li> <a href="<?php echo route('category', [$all_category_item['id'], $all_category_item['slug']]); ?>">{{ $all_category_item['name'] }}</a> </li>
                                     <?php } ?>
-                                    <li> <a href="<?php echo route('page','about_us'); ?>">About Us</a> </li>
-                                    <li> <a href="<?php echo route('page','disclaimers'); ?>">Disclaimers</a> </li>
-                                    <li> <a href="<?php echo route('page','privacy_policy'); ?>">Privacy Policy</a> </li>
-                                    <li> <a href="<?php echo route('page','terms'); ?>">Terms</a> </li>
-                                    <li> <a href="<?php echo route('page','contact_us'); ?>">Contact Us</a> </li>
+                                    <li> <a href="<?php echo route('page', 'about_us'); ?>">About Us</a> </li>
+                                    <li> <a href="<?php echo route('page', 'disclaimers'); ?>">Disclaimers</a> </li>
+                                    <li> <a href="<?php echo route('page', 'privacy_policy'); ?>">Privacy Policy</a> </li>
+                                    <li> <a href="<?php echo route('page', 'terms'); ?>">Terms</a> </li>
+                                    <li> <a href="<?php echo route('page', 'contact_us'); ?>">Contact Us</a> </li>
                                 </ul>
                             </div>
                         </div>
@@ -179,15 +171,38 @@
                         <div class="col-lg-4 col-sm-12 col-xs-12 footer-widget widget-categories">
                             <h3 class="widget-title">Pages</h3>
                             <ul>
-                                <?php foreach (all_category() as $key => $all_category_item) { ?>
-                                    <li>
-                                        <i class="fa fa-angle-double-right"></i>
-                                        <a href="<?php echo route('category', [$all_category_item['id'], $all_category_item['slug']]); ?>">
-                                            <span class="catTitle">{{ $all_category_item['name'] }}</span>
-                                            <!-- <span class="catCounter"> (05)</span> -->
-                                        </a>
-                                    </li>
-                                <?php } ?>
+
+                                <li>
+                                    <i class="fa fa-angle-double-right"></i>
+                                    <a href="<?php echo route('page', 'about_us'); ?>">
+                                        <span class="catTitle">About Us</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-angle-double-right"></i>
+                                    <a href="<?php echo route('page', 'disclaimers'); ?>">
+                                        <span class="catTitle">Disclaimers</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-angle-double-right"></i>
+                                    <a href="<?php echo route('page', 'privacy_policy'); ?>">
+                                        <span class="catTitle">Privacy Policy</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-angle-double-right"></i>
+                                    <a href="<?php echo route('page', 'terms'); ?>">
+                                        <span class="catTitle">Terms</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-angle-double-right"></i>
+                                    <a href="<?php echo route('page', 'contact_us'); ?>">
+                                        <span class="catTitle">Contact Us</span>
+                                    </a>
+                                </li>
+
                             </ul>
                         </div>
                         <div class="col-lg-4 col-sm-12 col-xs-12 footer-widget widget-categories">

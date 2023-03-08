@@ -95,9 +95,9 @@
                 name: {
                     required: true,
                 },
-                image: {
-                    required: true,
-                }
+                // image: {
+                //     required: true,
+                // }
             }
         });
     });

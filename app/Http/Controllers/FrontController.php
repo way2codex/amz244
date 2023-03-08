@@ -44,6 +44,7 @@ class FrontController extends Controller
     {
         $data = Article::with('category')
             ->where('category_id', $category_id)
+            ->orderBy('id','desc')
             ->latest()
             ->paginate(6);
         return view('welcome', compact('data'));

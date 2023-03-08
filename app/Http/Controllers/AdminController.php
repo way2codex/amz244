@@ -242,7 +242,7 @@ class AdminController extends Controller
     }
     public function get_article(Request $request)
     {
-        $data = Article::select('*');
+        $data = Article::orderBy('id','desc');
         return DataTables::of($data)
             ->addIndexColumn()
             ->editColumn('image', function ($row) {
@@ -271,9 +271,15 @@ class AdminController extends Controller
         $amazon_widget = $request->post('amazon_widget') ?? '';
         $body = $request->post('body') ?? '';
 
-        $file = $request->file('image');
-        $image = $name . rand(1111111111, 9999999999) . "." . $file->getClientOriginalExtension();
-        $file->move("uploads/article/", $image);
+        
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $image = $name . rand(1111111111, 9999999999) . "." . $file->getClientOriginalExtension();
+            $file->move("uploads/article/", $image);
+        }else{
+            $image='default.png';
+        }
+
         $slug = Str::slug($request->post('name'), '_');
         $data = Article::create(
             [

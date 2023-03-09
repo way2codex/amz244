@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="col-lg-7 col-md-6">
                                     <div class="utf_post_content">
-                                        <a class="" style="border-radius: 4px; padding: 2px; color: white; background-color: #ec0000;">{{ $item['category']['name'] }}</a>
+                                        <a class="" style="border-radius: 4px; padding: 2px; color: white; background-color: #ff3131;">{{ $item['category']['name'] }}</a>
                                         <h2 class="utf_post_title title-large"> <a href="<?php echo route('article', [$item['id'], $item['slug']]); ?>">{{ $item['name'] }}</a> </h2>
                                         <!-- <div class="utf_post_meta"> <span class="utf_post_author"><i class="fa fa-user"></i> <a href="#">John Wick</a></span> <span class="utf_post_date"><i class="fa fa-clock-o"></i> 25 Jan, 2022</span> <span class="post-comment pull-right"><i class="fa fa-comments-o"></i> <a href="#" class="comments-link"><span>03</span></a></span> </div> -->
                                         {!! substr($item['body'], 0, 300); !!}... <a href="<?php echo route('article', [$item['id'], $item['slug']]); ?>">Read More</a>

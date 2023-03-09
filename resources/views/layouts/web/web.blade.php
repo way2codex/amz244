@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="author" content="">
-    <meta name="theme-color" content="#ec0000">
+    <meta name="theme-color" content="#ff3131">
     <meta name="description" content="">
     <meta name="keywords" content="=">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -106,7 +106,7 @@
                                 <h4 style="
                                     font-family: cursive;
                                     font-size: xx-large;
-                                    background: #ec0000;
+                                    background: #ff3131;
                                     color: white;
                                     width: auto !important;
                                     text-align: center;

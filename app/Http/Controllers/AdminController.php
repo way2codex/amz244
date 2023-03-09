@@ -64,15 +64,15 @@ class AdminController extends Controller
     public function edit_store($store_id)
     {
         $store_data = Store::with('store_links')
-                        ->where('id',$store_id)->first();
-        return view('admin/store/edit', compact('store_id','store_data'));
+            ->where('id', $store_id)->first();
+        return view('admin/store/edit', compact('store_id', 'store_data'));
     }
     public function save_store(Request $request)
     {
         $file = $request->file('logo');
         $image = $request->post('name') . rand(1111111111, 9999999999) . "." . $file->getClientOriginalExtension();
         $file->move("uploads/category/", $image);
-      
+
         $data = Store::create(
             [
                 'name' => $request->post('name'),
@@ -94,14 +94,14 @@ class AdminController extends Controller
     }
     public function update_store(Request $request)
     {
-        if($request->hasFile('logo')){
+        if ($request->hasFile('logo')) {
             $file = $request->file('logo');
             $image = $request->post('name') . rand(1111111111, 9999999999) . "." . $file->getClientOriginalExtension();
             $file->move("uploads/category/", $image);
-        }else{
-            $image=$request->post('old_logo');
+        } else {
+            $image = $request->post('old_logo');
         }
-        $data = Store::where('id',$request->post('id'))
+        $data = Store::where('id', $request->post('id'))
             ->update(
                 [
                     'name' => $request->post('name'),
@@ -126,31 +126,33 @@ class AdminController extends Controller
     {
         $data = Store::select('*');
         return DataTables::of($data)
-        ->addIndexColumn()
-        ->editColumn('logo', function ($row) {
-            return "<img src='" . asset('uploads/category') . '/' . $row['logo'] . "' style='width:50px; height:50px;' />";
-        })
-        ->addColumn('action', function ($row) {
-            $btn = "";
-            $btn .= '<a href="'.route('admin.store_links',$row['id']).'" class="edit mr-2 btn btn-info btn-sm">Links</a>';
-            $btn .= '<a href="'.route('admin.edit_store',$row['id']).'" class="edit mr-2 btn btn-info btn-sm">Edit</a>';
-            // $btn .= '<a href="javascript:void(0)" class="edit mr-2 btn btn-warning btn-sm">View</a>';
-            return $btn;
-        })
-        ->rawColumns(['action', 'logo'])
-        ->make(true);
+            ->addIndexColumn()
+            ->editColumn('logo', function ($row) {
+                return "<img src='" . asset('uploads/category') . '/' . $row['logo'] . "' style='width:50px; height:50px;' />";
+            })
+            ->addColumn('action', function ($row) {
+                $btn = "";
+                $btn .= '<a href="' . route('admin.store_links', $row['id']) . '" class="edit mr-2 btn btn-info btn-sm">Links</a>';
+                $btn .= '<a href="' . route('admin.edit_store', $row['id']) . '" class="edit mr-2 btn btn-info btn-sm">Edit</a>';
+                // $btn .= '<a href="javascript:void(0)" class="edit mr-2 btn btn-warning btn-sm">View</a>';
+                return $btn;
+            })
+            ->rawColumns(['action', 'logo'])
+            ->make(true);
     }
-    public function store_links($store_id){
+    public function store_links($store_id)
+    {
         $store_data = Store::with('store_links')
-                        ->where('id',$store_id)->first();
-        return view('admin/store/store_links', compact('store_id','store_data'));
+            ->where('id', $store_id)->first();
+        return view('admin/store/store_links', compact('store_id', 'store_data'));
     }
-    public function save_store_links(Request $request){
+    public function save_store_links(Request $request)
+    {
         $all_links = $request->post('links');
         $store_id = $request->post('store_id');
-        $store_links = array_filter(explode ("\r\n", $all_links));
-        StoreLinks::where('store_id',$store_id)->forceDelete();
-        foreach($store_links as $key => $link_item){
+        $store_links = array_filter(explode("\r\n", $all_links));
+        StoreLinks::where('store_id', $store_id)->forceDelete();
+        foreach ($store_links as $key => $link_item) {
             $data = StoreLinks::create(
                 [
                     'url' => $link_item,
@@ -158,7 +160,7 @@ class AdminController extends Controller
                     'status' => 'active',
                 ]
             );
-        }    
+        }
         return redirect()->back();
     }
     public function category()
@@ -175,7 +177,7 @@ class AdminController extends Controller
             })
             ->addColumn('action', function ($row) {
                 $btn = "";
-                $btn .= '<a href="'.route('admin.edit_category',$row['id']).'" class="edit mr-2 btn btn-info btn-sm">Edit</a>';
+                $btn .= '<a href="' . route('admin.edit_category', $row['id']) . '" class="edit mr-2 btn btn-info btn-sm">Edit</a>';
                 // $btn .= '<a href="javascript:void(0)" class="edit mr-2 btn btn-warning btn-sm">Edit</a>';
                 return $btn;
             })
@@ -184,22 +186,22 @@ class AdminController extends Controller
     }
     public function edit_category($category_id)
     {
-        $category_data = Category::where('id',$category_id)->first();
-        return view('admin/category/edit', compact('category_id','category_data'));
+        $category_data = Category::where('id', $category_id)->first();
+        return view('admin/category/edit', compact('category_id', 'category_data'));
     }
     public function update_category(Request $request)
     {
         $name = $request->post('name');
         $slug = Str::slug($request->post('name'));
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $file = $request->file('image');
             $image = $name . rand(1111111111, 9999999999) . "." . $file->getClientOriginalExtension();
             $file->move("uploads/category/", $image);
-        }else{
-            $image=$request->post('old_image');
+        } else {
+            $image = $request->post('old_image');
         }
 
-        $data = Category::where('id',$request->post('id'))
+        $data = Category::where('id', $request->post('id'))
             ->update(
                 [
                     'name' => $name,
@@ -242,7 +244,7 @@ class AdminController extends Controller
     }
     public function get_article(Request $request)
     {
-        $data = Article::orderBy('id','desc');
+        $data = Article::orderBy('id', 'desc');
         return DataTables::of($data)
             ->addIndexColumn()
             ->editColumn('image', function ($row) {
@@ -250,7 +252,8 @@ class AdminController extends Controller
             })
             ->addColumn('action', function ($row) {
                 $btn = "";
-                $btn .= '<a target="_BLANK" href="'.route('admin.add_article_widget',$row['id']).'" class="edit mr-2 btn btn-info btn-sm">Widgets</a>';
+                $btn .= '<a target="_BLANK" href="' . route('admin.add_article_widget', $row['id']) . '" class="edit mr-2 btn btn-info btn-sm">Widgets</a>';
+                $btn .= '<a target="" href="' . route('admin.edit_article', $row['id']) . '" class="edit mr-2 btn btn-primary btn-sm">Edit</a>';
                 // $btn .= '<a href="javascript:void(0)" class="edit mr-2 btn btn-warning btn-sm">Edit</a>';
                 // $btn .= '<a href="javascript:void(0)" class="edit mr-2 btn btn-primary btn-sm">View</a>';
                 return $btn;
@@ -258,10 +261,50 @@ class AdminController extends Controller
             ->rawColumns(['action', 'image'])
             ->make(true);
     }
+    public function edit_article($article_id)
+    {
+        $article_data = Article::where('id', $article_id)->first();
+        $category = Category::all();
+        return view('admin/article/edit', compact('article_id', 'article_data', 'category'));
+    }
     public function add_article()
     {
         $category = Category::all();
         return view('admin/article/add', compact('category'));
+    }
+    public function update_article(Request $request)
+    {
+        $category_id = $request->post('category_id') ?? '';
+        $name = $request->post('name') ?? '';
+        $amazon_link = $request->post('amazon_link') ?? '';
+        $amazon_widget = $request->post('amazon_widget') ?? '';
+        $body = $request->post('body') ?? '';
+
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $image = $name . rand(1111111111, 9999999999) . "." . $file->getClientOriginalExtension();
+            $file->move("uploads/article/", $image);
+        }else{
+            $image = $request->post('old_image');
+        }
+
+        $slug = Str::slug($request->post('name'), '_');
+        $data = Article::where('id', $request->post('id'))
+            ->update(
+                [
+                    'category_id' => $category_id,
+                    'name' => $name,
+                    'image' => $image,
+                    'slug' => $slug,
+                    'body' => $body,
+                    'amazon_link' => $amazon_link,
+                    'amazon_widget' => $amazon_widget,
+                ]
+            );
+        if ($data) {
+            return redirect()->route('admin.article')->with('success', 'Data Added Successfully.');
+        }
     }
     public function save_article(Request $request)
     {
@@ -271,13 +314,13 @@ class AdminController extends Controller
         $amazon_widget = $request->post('amazon_widget') ?? '';
         $body = $request->post('body') ?? '';
 
-        
-        if($request->hasFile('image')){
+
+        if ($request->hasFile('image')) {
             $file = $request->file('image');
             $image = $name . rand(1111111111, 9999999999) . "." . $file->getClientOriginalExtension();
             $file->move("uploads/article/", $image);
-        }else{
-            $image='default.png';
+        } else {
+            $image = 'default.png';
         }
 
         $slug = Str::slug($request->post('name'), '_');
@@ -296,17 +339,18 @@ class AdminController extends Controller
             return redirect()->route('admin.article')->with('success', 'Data Added Successfully.');
         }
     }
-    
+
     public function add_article_widget($article_id)
     {
-        $store = Store::where('status','active')->get();
-        $article_data = Article::with(['article_widget'])->where('id',$article_id)->first();
-        return view('admin/article/add_widget', compact('store','article_data'));
+        $store = Store::where('status', 'active')->get();
+        $article_data = Article::with(['article_widget'])->where('id', $article_id)->first();
+        return view('admin/article/add_widget', compact('store', 'article_data'));
     }
-    public function save_article_widget(Request $request){
+    public function save_article_widget(Request $request)
+    {
         $widget_data = $request->post('widget_data');
         $article_id = $request->post('article_id');
-        foreach($widget_data as $key => $widget_data_item){
+        foreach ($widget_data as $key => $widget_data_item) {
             $data = ArticleWidget::updateOrCreate(
                 [
                     'article_id' => $article_id,

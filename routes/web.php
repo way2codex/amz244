@@ -51,6 +51,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/get_article', [AdminController::class, 'get_article'])->name('admin.get_article');
     Route::get('/add_article', [AdminController::class, 'add_article'])->name('admin.add_article');
     Route::post('/save_article', [AdminController::class, 'save_article'])->name('admin.save_article');
+    Route::get('/edit_article/{article_id}', [AdminController::class, 'edit_article'])->name('admin.edit_article');
+    Route::post('/update_article', [AdminController::class, 'update_article'])->name('admin.update_article');
     
     Route::get('/add_article_widget/{article_id}', [AdminController::class, 'add_article_widget'])->name('admin.add_article_widget');
     Route::post('/save_article_widget', [AdminController::class, 'save_article_widget'])->name('admin.save_article_widget');

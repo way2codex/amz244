@@ -125,7 +125,7 @@
             </div>
         </header>
         <!-- Header End -->
-
+        <b>New Layout Will Be Coming Soon</b>
         <!-- Mani Nav Start -->
         <div class="utf_main_nav_area clearfix utf_sticky">
             <div class="container">

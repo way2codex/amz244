@@ -14,6 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        echo 'email->'.env('ADMIN_EMAIL');
         User::firstOrCreate([
             'name' => 'Admin',
             'email' => env('ADMIN_EMAIL'),

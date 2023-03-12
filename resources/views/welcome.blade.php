@@ -5,71 +5,49 @@
 @endsection
 @section('content')
 
-<!-- Page Title Start -->
-<!-- <div class="page-title">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <ul class="breadcrumb">
-                    <li><a href="#">Home</a></li>
-                    <li>Technology</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div> -->
-<!-- Page title end -->
 
+<?php
+// dd($data);
+?>
 
 <section class="utf_block_wrapper">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-md-12">
-                <div class="block category-listing category-style2">
-                    <!-- <h3 class="utf_block_title"><span>Technology News</span></h3>
-                    <ul class="subCategory unstyled">
-                        <li><a href="#">Traveling</a></li>
-                        <li><a href="#">Games</a></li>
-                        <li><a href="#">Lifestyle</a></li>
-                    </ul> -->
-                    <?php foreach ($data as $key => $item) { ?>
-                        <div class="utf_post_block_style post-list clearfix">
-                            <div class="row">
-                                <div class="col-lg-5 col-md-6">
-                                    <a href="<?php echo route('article', [$item['id'], $item['slug']]); ?>">
-                                        <div class="utf_post_thumb thumb-float-style">
-                                            <img class="img-fluid" src="<?php echo  asset('uploads/article') . '/' . $item['image']; ?>" alt="{{ $item['name'] }}" />
-                                            <!-- <a class="utf_post_cat" style="color: white;">{{ $item['category']['name'] }}</a> -->
+            <?php foreach ($data as $key => $category_item) { ?>
+                <div class="col-lg-5" 
+                style="margin-right: auto; margin-top: 10px; border: 2px dotted #ff3131; padding: 10px;">
+                    <div class="block color-red">
+                        <h3 class="utf_block_title"><span>{{ $category_item['name'] }}</span></h3>
+                        <div class="utf_list_post_block">
+                            <ul class="utf_list_post">
+                                <?php
+                                $category_item->load('article_custom_limit');
+                                $article_data = $category_item['article_custom_limit'];
+                                ?>
+                                <?php foreach ($article_data as $key_article => $article_item) { ?>
+                                    <li class="clearfix">
+                                        <div class="utf_post_block_style post-float clearfix">
+                                            <div class="utf_post_content">
+                                                <h2 class="utf_post_title title-small">
+                                                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                                    <a href="{{ route('article',[$article_item['id'],$article_item['slug']]) }}">
+                                                        {{ $article_item['name'] }}
+                                                    </a>
+                                                </h2>
+                                            </div>
                                         </div>
+                                    </li>
+                                <?php } ?>
+                                <center>
+                                    <a class="btn btn-info" href="{{ route('category',[$category_item['id'],$category_item['slug']]) }}">
+                                        View All
                                     </a>
-                                </div>
-                                <div class="col-lg-7 col-md-6">
-                                    <div class="utf_post_content">
-                                        <a class="" style="border-radius: 4px; padding: 2px; color: white; background-color: #ff3131;">{{ $item['category']['name'] }}</a>
-                                        <h2 class="utf_post_title title-large"> <a href="<?php echo route('article', [$item['id'], $item['slug']]); ?>">{{ $item['name'] }}</a> </h2>
-                                        <!-- <div class="utf_post_meta"> <span class="utf_post_author"><i class="fa fa-user"></i> <a href="#">John Wick</a></span> <span class="utf_post_date"><i class="fa fa-clock-o"></i> 25 Jan, 2022</span> <span class="post-comment pull-right"><i class="fa fa-comments-o"></i> <a href="#" class="comments-link"><span>03</span></a></span> </div> -->
-                                        {!! substr($item['body'], 0, 300); !!}... <a href="<?php echo route('article', [$item['id'], $item['slug']]); ?>">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
+                                </center>
+                            </ul>
                         </div>
-                    <?php } ?>
+                    </div>
                 </div>
-
-                <!-- <div class="paging">
-                    <ul class="pagination">
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">»</a></li>
-                    </ul>
-                </div> -->
-                {!! $data->links() !!}
-            </div>
-
-            @include('sidebar')
-
+            <?php } ?>
         </div>
     </div>
 </section>

@@ -22,8 +22,7 @@
                                 <a href="<?php echo route('article', [$item['id'], $item['slug']]); ?>">
                                     <div class="utf_post_thumb">
                                         <img class="img-fluid" src="<?php echo  asset('uploads/article') . '/' . $item['image']; ?>" alt="" />
-                                        <!-- <a class="utf_post_cat">{{ $item['category']['name'] }}</a>  -->
-                                    </div>
+                                      </div>
                                 </a>
                                 <div class="utf_post_content">
                                     <h2 class="utf_post_title title-small">

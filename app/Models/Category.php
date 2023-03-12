@@ -11,4 +11,13 @@ class Category extends Model
 
     protected $guarded = [];
     public $table = 'category';
+
+    public function article()
+    {
+        return $this->hasMany(Article::class, 'category_id', 'id');
+    }
+    public function article_custom_limit()
+    {
+        return $this->hasMany(Article::class, 'category_id', 'id')->limit(8);
+    }
 }

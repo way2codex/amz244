@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Category;
 use App\Models\Store;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,8 @@ class FrontController extends Controller
      */
     public function index()
     {
-        $data = Article::with('category')->latest()->paginate(6);
+        // $data = Article::with('category')->latest()->paginate(6);
+        $data = Category::get();
         return view('welcome', compact('data'));
     }
     public function page($page)
@@ -47,7 +49,7 @@ class FrontController extends Controller
             ->orderBy('id','desc')
             ->latest()
             ->paginate(6);
-        return view('welcome', compact('data'));
+        return view('category', compact('data'));
     }
     public function article($id)
     {

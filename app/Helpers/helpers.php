@@ -22,9 +22,16 @@ if (!function_exists('popular_article')) {
 if (!function_exists('store_data')) {
     function store_data()
     {
-        $store_id = env('STORE_ID',0);
-        $store_data = Store::where('id',$store_id)->first();
-        return $store_data;
+        if (env('APP_ENV') == 'local') {
+            $store_id = env('STORE_ID', 0);
+            $store_data = Store::where('id', $store_id)->first();
+            return $store_data;
+        }
+
+        if (env('APP_ENV') == 'prod') {
+            $store_id = env('STORE_ID', 0);
+            $store_data = Store::where('website', str_replace('www.', '', $_SERVER['HTTP_HOST']))->first();
+            return $store_data;
+        }
     }
 }
-

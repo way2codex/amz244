@@ -23,6 +23,7 @@
                             </a>
                         </div>
                         <div style="text-align: center;" class="entry-content">
+                            <?php echo store_data()['article_header_script']; ?>
                             <?php
                             if ($data['article_widget']->where('store_id', store_id())->first()) {
                                 $widget_data = $data['article_widget']->where('store_id', store_id())->first()['widget_data'];
@@ -40,7 +41,7 @@
                             echo $widget_data;
                             ?>
                         </div>
-
+                        <?php echo store_data()['article_footer_script']; ?>
                         <!-- <div class="tags-area clearfix">
                             <div class="post-tags">
                                 <span>Tags:</span>

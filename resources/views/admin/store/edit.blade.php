@@ -81,6 +81,14 @@
                                 <label for="inputPassword4">Footer Script</label>
                                 <textarea class="form-control" id="footer_script" name="footer_script">{{ $store_data['footer_script'] }}</textarea>
                             </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Article Header Script</label>
+                                <textarea class="form-control" id="article_header_script" name="article_header_script">{{ $store_data['article_header_script'] }}</textarea>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Article Footer Script</label>
+                                <textarea class="form-control" id="article_footer_script" name="article_footer_script">{{ $store_data['article_footer_script'] }}</textarea>
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>

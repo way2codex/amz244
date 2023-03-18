@@ -67,6 +67,20 @@
                                 <label for="inputEmail4">About Us Tag</label>
                                 <input type="text" class="form-control" value="{{ $store_data['about_us_tag'] }}" id="about_us_tag" name="about_us_tag" placeholder="Tag">
                             </div>
+                            <div class="form-group col-md-6">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Header Script</label>
+                                <textarea class="form-control" id="header_script" name="header_script">{{ $store_data['header_script'] }}</textarea>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Sidebar Script</label>
+                                <textarea class="form-control" id="sidebar_script" name="sidebar_script">{{ $store_data['sidebar_script'] }}</textarea>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Footer Script</label>
+                                <textarea class="form-control" id="footer_script" name="footer_script">{{ $store_data['footer_script'] }}</textarea>
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>

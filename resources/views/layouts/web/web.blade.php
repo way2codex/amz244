@@ -13,6 +13,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @yield('title')
+    <?php echo store_data()['header_script']; ?>
 
     <!--Favicon-->
     <link rel="icon" href="{{ asset('web_asset/images/favicon.png') }}" type="image/x-icon">
@@ -284,6 +285,7 @@
             }, 800);
         });
     </script>
+    <?php echo store_data()['footer_script']; ?>
 </body>
 
 </html>

@@ -11,7 +11,11 @@
                 <li><a href="#" target="_blank"><i class="fa fa-youtube"></i></a></li>
             </ul>
         </div> -->
-
+        <?php if (store_data()['sidebar_script'] != "") { ?>
+            <div class="widget widget-tags">
+                <?php echo store_data()['sidebar_script']; ?>
+            </div>
+        <?php } ?>
         <div class="widget color-default">
             <h3 class="utf_block_title"><span>Popular</span></h3>
             <div class="utf_list_post_block">
@@ -22,7 +26,6 @@
                                 <a href="<?php echo route('article', [$item['id'], $item['slug']]); ?>">
                                     <div class="utf_post_thumb">
                                         <img class="img-fluid" src="<?php echo  asset('uploads/article') . '/' . $item['image']; ?>" alt="" />
-                                        <!-- <a class="utf_post_cat">{{ $item['category']['name'] }}</a>  -->
                                     </div>
                                 </a>
                                 <div class="utf_post_content">

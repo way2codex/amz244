@@ -85,6 +85,9 @@ class AdminController extends Controller
                 'payment' => $request->post('payment'),
                 'pan_card' => $request->post('pan_card'),
                 'about_us_tag' => $request->post('about_us_tag'),
+                'header_script' => $request->post('header_script'),
+                'sidebar_script' => $request->post('sidebar_script'),
+                'footer_script' => $request->post('footer_script'),
                 'status' => $request->post('status')
             ]
         );
@@ -114,6 +117,9 @@ class AdminController extends Controller
                     'payment' => $request->post('payment'),
                     'pan_card' => $request->post('pan_card'),
                     'about_us_tag' => $request->post('about_us_tag'),
+                    'header_script' => $request->post('header_script'),
+                    'sidebar_script' => $request->post('sidebar_script'),
+                    'footer_script' => $request->post('footer_script'),
                     'status' => $request->post('status')
                 ]
             );

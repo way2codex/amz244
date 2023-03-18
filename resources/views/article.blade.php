@@ -24,8 +24,8 @@
                         </div>
                         <div style="text-align: center;" class="entry-content">
                             <?php
-                            if ($data['article_widget']->where('store_id', env('STORE_ID'))->first()) {
-                                $widget_data = $data['article_widget']->where('store_id', env('STORE_ID'))->first()['widget_data'];
+                            if ($data['article_widget']->where('store_id', store_id())->first()) {
+                                $widget_data = $data['article_widget']->where('store_id', store_id())->first()['widget_data'];
                             } else {
                                 $widget_data = "";
                             }

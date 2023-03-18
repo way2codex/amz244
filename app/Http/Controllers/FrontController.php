@@ -33,7 +33,7 @@ class FrontController extends Controller
         $store_data = [];
         $view = 'page.' . $page;
         if (view()->exists($view)) {
-            $store_id = env('STORE_ID');
+            $store_id = store_id();
             $store_data = Store::where('id', $store_id)->first();
         } else {
             $view = '404';

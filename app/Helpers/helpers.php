@@ -29,9 +29,22 @@ if (!function_exists('store_data')) {
         }
 
         if (env('APP_ENV') == 'prod') {
-            $store_id = env('STORE_ID', 0);
             $store_data = Store::where('website', str_replace('www.', '', $_SERVER['HTTP_HOST']))->first();
             return $store_data;
+        }
+    }
+}
+if (!function_exists('store_id')) {
+    function store_id()
+    {
+        if (env('APP_ENV') == 'local') {
+            $store_id = env('STORE_ID', 0);
+            return $store_id;
+        }
+
+        if (env('APP_ENV') == 'prod') {
+            $store_data = Store::where('website', str_replace('www.', '', $_SERVER['HTTP_HOST']))->first();
+            return $store_data['id'];
         }
     }
 }

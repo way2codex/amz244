@@ -40,8 +40,8 @@
                             <?php
                             echo $widget_data;
                             ?>
+                            <?php echo store_data()['article_footer_script']; ?>
                         </div>
-                        <?php echo store_data()['article_footer_script']; ?>
                         <!-- <div class="tags-area clearfix">
                             <div class="post-tags">
                                 <span>Tags:</span>

@@ -1224,7 +1224,7 @@ ul.navbar-nav>li {
 }
 ul.navbar-nav>li>a {
 	display: inline-block;
-	padding: 0 12px;
+	padding: 0 8px;
 	line-height: 49px;
 	font-size: 14px;
 	font-weight: 700;
@@ -3212,3 +3212,4 @@ to {
 	font-size: 2em;
 }
 }
+

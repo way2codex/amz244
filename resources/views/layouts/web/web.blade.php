@@ -100,7 +100,7 @@
         <header id="header" class="header">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3 col-sm-12">
+                    <div class="col-md-12 col-sm-12">
                         <div class="logo">
                             <a href="<?php echo route('home'); ?>">
                                 <!-- <img src="{{ asset('web_asset/images/logo.png') }}" alt=""> -->
@@ -118,9 +118,6 @@
                                 </h4>
                             </a>
                         </div>
-                    </div>
-                    <div class="col-md-9 col-sm-12 header-right">
-                        <!-- <div class="ad-banner float-right"> <a href="#"><img src="{{ asset('web_asset/images/banner-ads/ad-top-header.png') }}" class="img-fluid" alt=""></a> </div> -->
                     </div>
                 </div>
             </div>
@@ -169,6 +166,52 @@
                 <div class="container">
                     <div class="row">
 
+
+                        <div class="col-lg-4 col-sm-12 col-xs-12 footer-widget">
+                            <h3 class="widget-title">Random Post</h3>
+                            <div class="utf_list_post_block">
+                                <ul class="utf_list_post">
+                                    <?php foreach (popular_article(3) as $key => $item) { ?>
+                                        <li class="clearfix">
+                                            <div class="utf_post_block_style post-float clearfix">
+                                                <a href="<?php echo route('article', [$item['id'], $item['slug']]); ?>">
+                                                    <div class="utf_post_thumb">
+                                                        <img class="img-fluid" src="<?php echo  asset('uploads/article') . '/' . $item['image']; ?>" alt="" />
+                                                    </div>
+                                                </a>
+                                                <div class="utf_post_content">
+                                                    <h2 class="utf_post_title title-small">
+                                                        <a href="<?php echo route('article', [$item['id'], $item['slug']]); ?>">
+                                                            {{ substr($item['name'], 0, 80); }}
+                                                        </a>
+                                                    </h2>
+                                                    <!-- <div class="utf_post_meta"> <span class="utf_post_date"><i class="fa fa-clock-o"></i> 25 Jan, 2022</span> </div> -->
+                                                </div>
+                                            </div>
+                                        </li>
+                                    <?php } ?>
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-lg-4 col-sm-12 col-xs-12 footer-widget widget-categories">
+                            <h3 class="widget-title">Categories</h3>
+                            <ul>
+                                <?php foreach (all_category() as $key => $all_category_item) { ?>
+                                    <li>
+                                        <i class="fa fa-angle-double-right"></i>
+                                        <a href="<?php echo route('category', [$all_category_item['id'], $all_category_item['slug']]); ?>">
+                                            <span class="catTitle">{{ $all_category_item['name'] }}</span>
+                                            <!-- <span class="catCounter"> (05)</span> -->
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+
+
                         <div class="col-lg-4 col-sm-12 col-xs-12 footer-widget widget-categories">
                             <h3 class="widget-title">Pages</h3>
                             <ul>
@@ -206,48 +249,6 @@
 
                             </ul>
                         </div>
-                        <div class="col-lg-4 col-sm-12 col-xs-12 footer-widget widget-categories">
-                            <h3 class="widget-title">Categories</h3>
-                            <ul>
-                                <?php foreach (all_category() as $key => $all_category_item) { ?>
-                                    <li>
-                                        <i class="fa fa-angle-double-right"></i>
-                                        <a href="<?php echo route('category', [$all_category_item['id'], $all_category_item['slug']]); ?>">
-                                            <span class="catTitle">{{ $all_category_item['name'] }}</span>
-                                            <!-- <span class="catCounter"> (05)</span> -->
-                                        </a>
-                                    </li>
-                                <?php } ?>
-                            </ul>
-                        </div>
-
-                        <div class="col-lg-4 col-sm-12 col-xs-12 footer-widget">
-                            <h3 class="widget-title">Random Post</h3>
-                            <div class="utf_list_post_block">
-                                <ul class="utf_list_post">
-                                    <?php foreach (popular_article(3) as $key => $item) { ?>
-                                        <li class="clearfix">
-                                            <div class="utf_post_block_style post-float clearfix">
-                                                <a href="<?php echo route('article', [$item['id'], $item['slug']]); ?>">
-                                                    <div class="utf_post_thumb">
-                                                        <img class="img-fluid" src="<?php echo  asset('uploads/article') . '/' . $item['image']; ?>" alt="" />
-                                                    </div>
-                                                </a>
-                                                <div class="utf_post_content">
-                                                    <h2 class="utf_post_title title-small">
-                                                        <a href="<?php echo route('article', [$item['id'], $item['slug']]); ?>">
-                                                            {{ substr($item['name'], 0, 80); }}
-                                                        </a>
-                                                    </h2>
-                                                    <!-- <div class="utf_post_meta"> <span class="utf_post_date"><i class="fa fa-clock-o"></i> 25 Jan, 2022</span> </div> -->
-                                                </div>
-                                            </div>
-                                        </li>
-                                    <?php } ?>
-                                </ul>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>

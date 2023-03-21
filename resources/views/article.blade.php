@@ -17,11 +17,7 @@
                     </div>
 
                     <div class="utf_post_content-area">
-                        <div class="post-media post-featured-image">
-                            <a href="#" class="gallery-popup">
-                                <img src="<?php echo  asset('uploads/article') . '/' . $data['image']; ?>" class="img-fluid" alt="">
-                            </a>
-                        </div>
+                        
                         <div style="text-align: center;" class="entry-content">
                             <?php
                             if ($data['article_widget']->where('store_id', store_id())->first()) {
@@ -32,6 +28,11 @@
                             echo $widget_data;
                             ?>
                         </div>
+                        <div class="post-media post-featured-image">
+                            
+                                <img src="<?php echo  asset('uploads/article') . '/' . $data['image']; ?>" class="img-fluid" alt="">
+                            
+                        </div>
                         <div class="entry-content">
                             {!! $data['body']; !!}
                         </div>
@@ -41,59 +42,21 @@
                             ?>
                         </div>
 
-                        <!-- <div class="tags-area clearfix">
-                            <div class="post-tags">
-                                <span>Tags:</span>
-                                <a href="#"># Business</a>
-                                <a href="#"># Corporate</a>
-                                <a href="#"># Services</a>
-                                <a href="#"># Customer</a>
-                            </div>
-                        </div> -->
-
-                        <div class="share-items clearfix">
-                            <ul class="post-social-icons unstyled">
-                                <li class="facebook"> <a href="#"> <i class="fa fa-facebook"></i> <span class="ts-social-title">Facebook</span></a> </li>
-                                <li class="twitter"> <a href="#"> <i class="fa fa-twitter"></i> <span class="ts-social-title">Twitter</span></a> </li>
-                                <li class="gplus"> <a href="#"> <i class="fa fa-google-plus"></i> <span class="ts-social-title">Google +</span></a> </li>
-                                <li class="pinterest"> <a href="#"> <i class="fa fa-pinterest"></i> <span class="ts-social-title">Pinterest</span></a> </li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
 
-                <nav class="post-navigation clearfix">
-                    <div class="post-previous">
-
-                        <a href="<?php echo route('article', [$prev_next_data[0]['id'], $prev_next_data[0]['slug']]); ?>"> <span><i class="fa fa-angle-left"></i>Previous Post</span>
-                            <h3>{{ substr($prev_next_data[0]['name'], 0, 80); }}</h3>
-                        </a>
-                    </div>
-                    <div class="post-next">
-                        <a href="<?php echo route('article', [$prev_next_data[1]['id'], $prev_next_data[1]['slug']]); ?>"> <span>Next Post <i class="fa fa-angle-right"></i></span>
-                            <h3>{{ substr($prev_next_data[1]['name'], 0, 80); }}</h3>
-                        </a>
-                    </div>
-                </nav>
 
 
                 <div class="related-posts block">
                     <h3 class="utf_block_title"><span>Related Posts</span></h3>
-                    <div id="utf_latest_news_slide" class="owl-carousel owl-theme utf_latest_news_slide">
+                    <div id="utf_latest_news_slide" class="row">
                         <?php foreach ($related_data as $key => $item) { ?>
-                            <div class="item">
+                            <div class="col-md-3 col-sm-12 col-lg-3">
                                 <div class="utf_post_block_style clearfix">
-                                    <div class="utf_post_thumb">
+                                    <div class="">
                                         <a href="<?php echo route('article', [$item['id'], $item['slug']]); ?>">
-                                            <img class="img-fluid" src="<?php echo  asset('uploads/article') . '/' . $item['image']; ?>" alt="" />
+                                            <img style="margin-bottom: 20px;" class="img-fluid" src="<?php echo  asset('uploads/article') . '/' . $item['image']; ?>" alt="" />
                                         </a>
-                                    </div>
-                                    <a class="utf_post_cat" href="#">Health</a>
-                                    <div class="utf_post_content">
-                                        <h2 class="utf_post_title title-medium">
-                                            <a href="<?php echo route('article', [$item['id'], $item['slug']]); ?>">{{ substr($item['name'], 0, 35); }}</a>
-                                        </h2>
-                                        <!-- <div class="utf_post_meta"> <span class="utf_post_date"><i class="fa fa-clock-o"></i> 25 Jan, 2022</span> </div> -->
                                     </div>
                                 </div>
                             </div>

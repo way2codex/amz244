@@ -25,7 +25,7 @@ class FrontController extends Controller
      */
     public function index()
     {
-        $data = Article::with('category')->latest()->paginate(6);
+        $data = Article::with('category')->latest()->paginate(18);
         return view('welcome', compact('data'));
     }
     public function page($page)
@@ -46,7 +46,7 @@ class FrontController extends Controller
             ->where('category_id', $category_id)
             ->orderBy('id','desc')
             ->latest()
-            ->paginate(6);
+            ->paginate(18);
         return view('welcome', compact('data'));
     }
     public function article($id)
@@ -56,7 +56,7 @@ class FrontController extends Controller
             ->first();
         $related_data = Article::with('category')
             ->where('category_id', $data['category_id'])
-            ->limit(4)
+            ->limit(16)
             ->get();
         $prev_next_data = Article::limit(2)->inRandomOrder()->get();
         return view('article', compact('data', 'related_data', 'prev_next_data'));

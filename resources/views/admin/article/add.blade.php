@@ -32,14 +32,6 @@
                                 <label for="inputEmail4">Body</label>
                                 <textarea class="form-control" id="body" name="body"></textarea>
                             </div>
-                            <div class="form-group col-md-12">
-                                <label for="inputEmail4">Amazon Link</label>
-                                <input type="text" class="form-control" id="amazon_link" name="amazon_link" placeholder="Amazon Link">
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label for="inputEmail4">Amazon Widget</label>
-                                <textarea class="form-control" id="amazon_widget" name="amazon_widget"></textarea>
-                            </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>

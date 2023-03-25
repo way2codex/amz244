@@ -29,7 +29,7 @@ class FrontController extends Controller
         if (store_data()['home_blade'] != "") {
             session()->put('article_campaign_redirect', false);
             $data = Article::limit(1)->inRandomOrder()->first();
-            $url = "https://syndication.exdynsrv.com/splash.php?cat=&idzone=4945728&type=8&p=https%3A%2F%2Fwww.beautifulstuff.online%2&sub=&tags=&el=&cookieconsent=true&scr_info=cmVtb3RlfHBvcHVuZGVyanN8MjYyMjU2NjY%3D";
+            $url = "https://syndication.exdynsrv.com/splash.php?cat=&idzone=4943802&type=8&p=https%3A%2F%2Fwww.indiality.shop%2&sub=&tags=&el=&cookieconsent=true&scr_info=cmVtb3RlfHBvcHVuZGVyanN8MjYyMjU2NjY%3D";
             // $url = "https://syndication.exdynsrv.com/splash.php?cat=&idzone=4945728&type=8&p=https%3A%2F%2Fwww.beautifulstuff.online%2Farticle%2F" . $data['id'] . "%2F" . $data['slug'] . "&sub=&tags=&el=&cookieconsent=true&scr_info=cmVtb3RlfHBvcHVuZGVyanN8MjYyMjU2NjY%3D";
 
             return redirect()->away($url);

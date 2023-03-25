@@ -57,6 +57,7 @@
                         <a class="nav-link" href="{{ route('admin.store') }}">Store</a>
                         <a class="nav-link" href="{{ route('admin.category') }}">Category</a>
                         <a class="nav-link" href="{{ route('admin.article') }}">Article</a>
+                        <a class="nav-link" href="{{ route('admin.campaign') }}">Campaign</a>
                         <a class="nav-link" href="{{ route('admin_home') }}">Settigns</a>
                     </ul>
                     @endguest

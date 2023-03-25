@@ -27,6 +27,8 @@ Route::get('/article/{id}/{slug}', [FrontController::class, 'article'])->name('a
 Route::get('/category/{id}/{slug}', [FrontController::class, 'category'])->name('category');
 Route::get('/page/{slug}', [FrontController::class, 'page'])->name('page');
 
+Route::get('/article_campaign/{id}', [FrontController::class, 'article_campaign'])->name('article_campaign');
+
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin_index');
     Route::get('/home', [AdminController::class, 'index'])->name('admin_home');
@@ -37,6 +39,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('/save_category', [AdminController::class, 'save_category'])->name('admin.save_category');
     Route::get('/edit_category/{category_id}', [AdminController::class, 'edit_category'])->name('admin.edit_category');
     Route::post('/update_category', [AdminController::class, 'update_category'])->name('admin.update_category');
+    
+    Route::get('/campaign', [AdminController::class, 'campaign'])->name('admin.campaign');
+    Route::get('/get_campaign', [AdminController::class, 'get_campaign'])->name('admin.get_campaign');
+    Route::get('/add_campaign', [AdminController::class, 'add_campaign'])->name('admin.add_campaign');
+    Route::post('/save_campaign', [AdminController::class, 'save_campaign'])->name('admin.save_campaign');
+    Route::get('/edit_campaign/{campaign_id}', [AdminController::class, 'edit_campaign'])->name('admin.edit_campaign');
+    Route::post('/update_campaign', [AdminController::class, 'update_campaign'])->name('admin.update_campaign');
     
     Route::get('/store', [AdminController::class, 'store'])->name('admin.store');
     Route::get('/get_store', [AdminController::class, 'get_store'])->name('admin.get_store');

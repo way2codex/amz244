@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Article;
+use App\Models\ArticleCampaign;
 use App\Models\Store;
 use App\Models\StoreLinks;
 use App\Models\ArticleWidget;
@@ -370,5 +371,84 @@ class AdminController extends Controller
             );
         }
         return redirect(route('admin.article'));
+    }
+
+    public function campaign()
+    {
+        $store = Store::all();
+        return view('admin/campaign/index',compact('store'));
+    }
+    public function get_campaign(Request $request)
+    {
+        $data = ArticleCampaign::select('*');
+        if (!empty($request->post('store_id'))) {
+            $data->where('store_id', $request->post('store_id'));
+        }
+        return DataTables::of($data)
+            ->addIndexColumn()
+            ->addColumn('action', function ($row) {
+                $btn = "";
+                $btn .= '<a href="' . route('admin.edit_campaign', $row['id']) . '" class="edit mr-2 btn btn-info btn-sm">Edit</a>';
+                // $btn .= '<a href="javascript:void(0)" class="edit mr-2 btn btn-warning btn-sm">Edit</a>';
+                return $btn;
+            })
+            ->rawColumns(['action', 'image'])
+            ->make(true);
+    }
+    public function edit_campaign($campaign_id)
+    {
+        $campaign = ArticleCampaign::where('id', $campaign_id)->first();
+        $store = Store::all();
+        return view('admin/campaign/edit', compact('campaign_id', 'campaign','store'));
+    }
+    public function update_campaign(Request $request)
+    {
+        $name = $request->post('name');
+        $store_id = $request->post('store_id');
+        $campaign_id = $request->post('campaign_id');
+        $url = $request->post('url');
+        $status = $request->post('status');
+
+        $data = ArticleCampaign::where('id', $request->post('id'))
+            ->update(
+                [
+                    'name' => $name,
+                    'store_id' => $store_id,
+                    'campaign_id' => $campaign_id,
+                    'url' => $url,
+                    'status' => $status
+                ]
+            );
+        if ($data) {
+            return redirect()->route('admin.campaign')->with('success', 'Data Added Successfully.');
+        }
+    }
+    public function add_campaign()
+    {
+
+        $store = Store::all();
+        return view('admin/campaign/add', compact('store'));
+    }
+    public function save_campaign(Request $request)
+    {
+        $name = $request->post('name');
+        $store_id = $request->post('store_id');
+        $campaign_id = $request->post('campaign_id');
+        $url = $request->post('url');
+        $status = $request->post('status');
+
+
+        $data = ArticleCampaign::create(
+            [
+                'name' => $name,
+                'store_id' => $store_id,
+                'campaign_id' => $campaign_id,
+                'url' => $url,
+                'status' => $status
+            ]
+        );
+        if ($data) {
+            return redirect()->route('admin.campaign')->with('success', 'Data Added Successfully.');
+        }
     }
 }

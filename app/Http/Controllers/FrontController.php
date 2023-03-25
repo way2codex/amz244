@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Store;
+use App\Models\ArticleCampaign;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -28,6 +29,20 @@ class FrontController extends Controller
         $data = Article::with('category')->latest()->paginate(18);
         return view('welcome', compact('data'));
     }
+    public function article_campaign($id)
+    {
+        $camp = ArticleCampaign::where('campaign_id', $id)->where('status','active')->first();
+        if ($camp) {
+            session()->put('article_campaign_redirect', true);
+            
+            // session(['article_campaign_redirect' => 'true']);
+        } else {
+            session()->put('article_campaign_redirect', false);
+            session(['article_campaign_redirect' => 'false']);
+        }
+        $article = Article::limit(1)->inRandomOrder()->first();
+        return redirect()->route('article', ['id' => $article['id'], 'slug' => $article['slug']]);
+    }
     public function page($page)
     {
         $store_data = [];
@@ -44,21 +59,30 @@ class FrontController extends Controller
     {
         $data = Article::with('category')
             ->where('category_id', $category_id)
-            ->orderBy('id','desc')
+            ->orderBy('id', 'desc')
             ->latest()
             ->paginate(18);
         return view('welcome', compact('data'));
     }
     public function article($id)
     {
-        $data = Article::with(['category','article_widget'])
+
+        $data = Article::with(['category', 'article_widget'])
             ->where('id', $id)
             ->first();
-        $related_data = Article::with('category')
-            ->where('category_id', $data['category_id'])
-            ->limit(16)
-            ->get();
-        $prev_next_data = Article::limit(2)->inRandomOrder()->get();
-        return view('article', compact('data', 'related_data', 'prev_next_data'));
+
+        if (session('article_campaign_redirect') === true) {
+            session()->put('article_campaign_redirect', false);
+            $url = "https://syndication.exdynsrv.com/splash.php?cat=&idzone=4945728&type=8&p=https%3A%2F%2Fwww.beautifulstuff.online%2Farticle%2F".$data['id']."%2F".$data['slug']."&sub=&tags=&el=&cookieconsent=true&scr_info=cmVtb3RlfHBvcHVuZGVyanN8MjYyMjU2NjY%3D";
+
+            return redirect()->away($url);
+        } else {
+            $related_data = Article::with('category')
+                ->where('category_id', $data['category_id'])
+                ->limit(16)
+                ->get();
+            $prev_next_data = Article::limit(2)->inRandomOrder()->get();
+            return view('article', compact('data', 'related_data', 'prev_next_data'));
+        }
     }
 }

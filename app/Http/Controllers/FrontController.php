@@ -27,7 +27,13 @@ class FrontController extends Controller
     public function index()
     {
         if (store_data()['home_blade'] != "") {
-            return view(store_data()['home_blade']);
+            session()->put('article_campaign_redirect', false);
+            $data = Article::limit(1)->inRandomOrder()->first();
+            $url = "https://syndication.exdynsrv.com/splash.php?cat=&idzone=4945728&type=8&p=https%3A%2F%2Fwww.beautifulstuff.online%2&sub=&tags=&el=&cookieconsent=true&scr_info=cmVtb3RlfHBvcHVuZGVyanN8MjYyMjU2NjY%3D";
+            // $url = "https://syndication.exdynsrv.com/splash.php?cat=&idzone=4945728&type=8&p=https%3A%2F%2Fwww.beautifulstuff.online%2Farticle%2F" . $data['id'] . "%2F" . $data['slug'] . "&sub=&tags=&el=&cookieconsent=true&scr_info=cmVtb3RlfHBvcHVuZGVyanN8MjYyMjU2NjY%3D";
+
+            return redirect()->away($url);
+            // return view(store_data()['home_blade']);
         } else {
             $data = Article::with('category')->latest()->paginate(18);
             return view('welcome', compact('data'));
@@ -36,15 +42,14 @@ class FrontController extends Controller
     public function article_campaign($id)
     {
         $camp = ArticleCampaign::where('campaign_id', $id)->where('status', 'active')->first();
+        $article = Article::limit(1)->inRandomOrder()->first();
         if ($camp) {
             session()->put('article_campaign_redirect', true);
 
-            // session(['article_campaign_redirect' => 'true']);
         } else {
             session()->put('article_campaign_redirect', false);
             session(['article_campaign_redirect' => 'false']);
         }
-        $article = Article::limit(1)->inRandomOrder()->first();
         return redirect()->route('article', ['id' => $article['id'], 'slug' => $article['slug']]);
     }
     public function page($page)

@@ -68,6 +68,8 @@
                                 <input type="text" class="form-control" value="{{ $store_data['about_us_tag'] }}" id="about_us_tag" name="about_us_tag" placeholder="Tag">
                             </div>
                             <div class="form-group col-md-6">
+                                <label for="inputEmail4">Home Blade</label>
+                                <input type="text" class="form-control" value="{{ $store_data['home_blade'] }}" id="home_blade" name="home_blade" placeholder="home_blade">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputPassword4">Header Script</label>

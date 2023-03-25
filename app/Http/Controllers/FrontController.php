@@ -26,15 +26,19 @@ class FrontController extends Controller
      */
     public function index()
     {
-        $data = Article::with('category')->latest()->paginate(18);
-        return view('welcome', compact('data'));
+        if (store_data()['home_blade'] != "") {
+            return view(store_data()['home_blade']);
+        } else {
+            $data = Article::with('category')->latest()->paginate(18);
+            return view('welcome', compact('data'));
+        }
     }
     public function article_campaign($id)
     {
-        $camp = ArticleCampaign::where('campaign_id', $id)->where('status','active')->first();
+        $camp = ArticleCampaign::where('campaign_id', $id)->where('status', 'active')->first();
         if ($camp) {
             session()->put('article_campaign_redirect', true);
-            
+
             // session(['article_campaign_redirect' => 'true']);
         } else {
             session()->put('article_campaign_redirect', false);
@@ -73,7 +77,7 @@ class FrontController extends Controller
 
         if (session('article_campaign_redirect') === true) {
             session()->put('article_campaign_redirect', false);
-            $url = "https://syndication.exdynsrv.com/splash.php?cat=&idzone=4945728&type=8&p=https%3A%2F%2Fwww.beautifulstuff.online%2Farticle%2F".$data['id']."%2F".$data['slug']."&sub=&tags=&el=&cookieconsent=true&scr_info=cmVtb3RlfHBvcHVuZGVyanN8MjYyMjU2NjY%3D";
+            $url = "https://syndication.exdynsrv.com/splash.php?cat=&idzone=4945728&type=8&p=https%3A%2F%2Fwww.beautifulstuff.online%2Farticle%2F" . $data['id'] . "%2F" . $data['slug'] . "&sub=&tags=&el=&cookieconsent=true&scr_info=cmVtb3RlfHBvcHVuZGVyanN8MjYyMjU2NjY%3D";
 
             return redirect()->away($url);
         } else {

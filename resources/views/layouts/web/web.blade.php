@@ -13,7 +13,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @yield('title')
-    <?php echo store_data()['header_script']; ?>
+
 
     <!--Favicon-->
     <link rel="icon" href="{{ asset('web_asset/images/favicon.png') }}" type="image/x-icon">
@@ -31,6 +31,9 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,500,600,700,800&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600,700,800&amp;display=swap" rel="stylesheet">
+
+    <script src="{{ asset('web_asset/js/jquery-3.2.1.min.js') }}"></script>
+    <?php echo store_data()['header_script']; ?>
 </head>
 
 <body>
@@ -271,7 +274,7 @@
     </div>
 
     <!-- Javascript Files -->
-    <script src="{{ asset('web_asset/js/jquery-3.2.1.min.js') }}"></script>
+
     <script src="{{ asset('web_asset/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('web_asset/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('web_asset/js/jquery.colorbox.js') }}"></script>

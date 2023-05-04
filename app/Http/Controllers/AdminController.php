@@ -88,6 +88,8 @@ class AdminController extends Controller
                 'header_script' => $request->post('header_script'),
                 'sidebar_script' => $request->post('sidebar_script'),
                 'footer_script' => $request->post('footer_script'),
+                'article_header_script' => $request->post('article_header_script'),
+                'article_footer_script' => $request->post('article_footer_script'),
                 'status' => $request->post('status')
             ]
         );
@@ -120,6 +122,8 @@ class AdminController extends Controller
                     'header_script' => $request->post('header_script'),
                     'sidebar_script' => $request->post('sidebar_script'),
                     'footer_script' => $request->post('footer_script'),
+                    'article_header_script' => $request->post('article_header_script'),
+                    'article_footer_script' => $request->post('article_footer_script'),
                     'status' => $request->post('status')
                 ]
             );
